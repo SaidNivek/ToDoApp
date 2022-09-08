@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 
-// import { Text } from "react-native"
+import { Text } from "react-native"
 
 import { SwipeListView } from "react-native-swipe-list-view"
 import { Entypo } from "@expo/vector-icons"
@@ -37,6 +37,10 @@ function ListItems({todos, setTodos}) {
     }
 
     return (
+        <>
+        {/* Use the ternary operator to display a message if there are no items or display the items if they exist */}
+        {todos.length == 0 ? <TodoText>You have no to-do items today.</TodoText> 
+        :
         <SwipeListView 
             data={todos}
             renderItem={(data) => {
@@ -84,7 +88,8 @@ function ListItems({todos, setTodos}) {
         onRowClose={() => {
             setSwipedRow(null)
         }}
-    />
+    />}
+    </>
   )
 }
 
