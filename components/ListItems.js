@@ -21,13 +21,34 @@ function ListItems({todos, setTodos}) {
     // Style for the currently swiped to-do row
     const [swipedRow, setSwipedRow] = useState(null)
 
+    // Functions
+    // Funtion to delete the to-do item when the trash symbol is pressed
+    // Maybe change this to move the item to the completed tasks page?
+    const handleDeleteTodo = (rowMap, rowKey) => {
+        // Set a new array with the information from the original todos array
+        const newTodos = [...todos]
+        // Set a variable with the index, using findIndex, which matches the todo.key with the rowKey
+        // rowKey is set when the row is swiped, in the SwipeListView
+        const todoIndex = todos.findIndex((todo) => todo.key === rowKey)
+        // Splice out the index of the row item, by using the splice function, indicating 1 to remove 1 position
+        newTodos.splice(todoIndex, 1)
+        // Reset the to do list with the newTodos array, which just removed the deleted item
+        setTodos(newTodos)
+    }
+
     return (
         <SwipeListView 
             data={todos}
             renderItem={(data) => {
                 const RowText = data.item.key == swipedRow ? SwipedTodoText : TodoText
                 return (
-                    <ListView>
+                    <ListView
+                        underlayColor={colors.primary}
+                        onPress={() => {
+
+                        }}
+                    >
+                        
                         <>
                             <RowText>{data.item.title}</RowText>
                             <TodoDate>{data.item.date}</TodoDate>
@@ -35,10 +56,14 @@ function ListItems({todos, setTodos}) {
                     </ListView>
                 )
             }}
-        renderHiddenItem={() => {
+        // Need to pass the rowMap and data into the renderHiddenItem for the handleDeleteTodo function
+        renderHiddenItem={(data, rowMap) => {
             return (
                 <ListViewHidden>
-                    <HiddenButton>
+                    <HiddenButton
+                        // Use the rowMap and data.item.key to get the swiped row's info in order to delete things
+                        onPress={() => handleDeleteTodo(rowMap, data.item.key)}
+                    >
                         <Entypo name="trash" size={25} color={colors.secondary} />
                     </HiddenButton>
                 </ListViewHidden>
