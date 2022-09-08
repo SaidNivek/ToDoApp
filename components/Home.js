@@ -29,9 +29,18 @@ const initialTodos = [
 
 const [todos, setTodos] = useState(initialTodos)
 
+// Functions
+// handleClearTodos will remove the entire list when you press the trash button in the header
+const handleClearTodos = () => {
+    // We will set the value of todos to an empty array
+    setTodos([])
+}
+
   return (
     <>
-        <Header />
+        <Header 
+            handleClearTodos={handleClearTodos}
+        />
         <ListItems 
             todos={todos}
             setTodos={setTodos}

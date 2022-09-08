@@ -11,11 +11,14 @@ import {
 // import icons
 import { Entypo } from "@expo/vector-icons"
 
-function Header() {
+function Header({handleClearTodos}) {
   return (
     <HeaderView>
         <HeaderTitle>To Do Items</HeaderTitle>
-        <HeaderButton>
+        <HeaderButton
+        // Pass the param handleClearTodos to the onPress function to clear the to do list items on pressing the trash button 
+            onPress={handleClearTodos}
+        >
             <Entypo name="trash" size={25} color={colors.tertiary} />
         </HeaderButton>
     </HeaderView>
