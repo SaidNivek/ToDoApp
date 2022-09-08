@@ -1,11 +1,13 @@
 
 import React from 'react'
-
 import { Text } from 'react-native'
+
+// components
+import Header from './Header'
 
 function Home() {
   return (
-    <Text>This is home.</Text>
+    <Header />
   )
 }
 
