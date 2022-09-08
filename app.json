@@ -1,5 +1,6 @@
 {
   "expo": {
+    "owner": "saidnivek",
     "name": "ToDoApp",
     "slug": "ToDoApp",
     "version": "1.0.0",
