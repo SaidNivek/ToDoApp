@@ -11,10 +11,10 @@ import Constants from "expo-constants";
 
 // Colors
 export const colors = {
-  primary: "#332424",
-  secondary: "#4D3636",
-  tertiary: "#E6E6E6",
-  alternative: "#999999",
+  primary: "#DCE1DB",
+  secondary: "#50999D",
+  tertiary: "#8AC0B9",
+  alternative: "#FFFFFF",
 };
 
 const statusBarHeight = Constants.statusBarHeight;
