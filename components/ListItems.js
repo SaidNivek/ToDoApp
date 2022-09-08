@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState } from 'react'
 
 // import { Text } from "react-native"
 
@@ -17,19 +17,24 @@ import {
 } from "../styles/appStyles"
 
 function ListItems({todos, setTodos}) {
-  return (
-    <SwipeListView 
-        data={todos}
-        renderItem={(data) => {
-            return (
-                <ListView>
-                    <>
-                        <TodoText>{data.item.title}</TodoText>
-                        <TodoDate>{data.item.date}</TodoDate>
-                    </>
-                </ListView>
-            )
-        }}
+
+    // Style for the currently swiped to-do row
+    const [swipedRow, setSwipedRow] = useState(null)
+
+    return (
+        <SwipeListView 
+            data={todos}
+            renderItem={(data) => {
+                const RowText = data.item.key == swipedRow ? SwipedTodoText : TodoText
+                return (
+                    <ListView>
+                        <>
+                            <RowText>{data.item.title}</RowText>
+                            <TodoDate>{data.item.date}</TodoDate>
+                        </>
+                    </ListView>
+                )
+            }}
         renderHiddenItem={() => {
             return (
                 <ListViewHidden>
@@ -47,6 +52,12 @@ function ListItems({todos, setTodos}) {
         showsVerticalScrollIndicator={false}
         style={{
             flex: 1, paddingBottom: 30, marginBottom: 40
+        }}
+        onRowOpen={(rowKey) => {
+            setSwipedRow(rowKey)
+        }}
+        onRowClose={() => {
+            setSwipedRow(null)
         }}
     />
   )
