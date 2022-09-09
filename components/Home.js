@@ -28,7 +28,14 @@ const initialTodos = [
     }
 ]
 
+//States
+// This will set the initial state of the to do list items
 const [todos, setTodos] = useState(initialTodos)
+
+// Modal visibility, which will change state if the modal has been clicked/pressed
+const [modalVisible, setModalVisible] = useState(false)
+// Modal input value, which will be updated in real time as the user types in to-do list items
+const [todoInputValue, setTodoInputValue] = useState()
 
 // Functions
 // handleClearTodos will remove the entire list when you press the trash button in the header
@@ -37,8 +44,7 @@ const handleClearTodos = () => {
     setTodos([])
 }
 
-// Modal visibility, which will change state if the modal has been clicked/pressed
-const [modalVisible, setModalVisible] = useState(false)
+
 
   return (
     <>
@@ -52,6 +58,8 @@ const [modalVisible, setModalVisible] = useState(false)
         <InputModal 
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
+            todoInputValue={todoInputValue}
+            setTodoInputValue={setTodoInputValue}
         />
     </>
   )
