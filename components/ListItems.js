@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 
-import { Text } from "react-native"
+// import { Text } from "react-native"
 
 import { SwipeListView } from "react-native-swipe-list-view"
 import { Entypo } from "@expo/vector-icons"
@@ -74,9 +74,13 @@ function ListItems({todos, setTodos}) {
             )
         }}
         leftOpenValue={80}
+        // Preview the first row, which has a key of 1
         previewRowKey={"1"}
+        // Preview the open by 80 pixels
         previewOpenValue={80}
+        // Delay the open preview for 3 seconds, to show that you can swipe
         previewOpenDelay={3000}
+        // Prevent swiping from right-to-left
         disableLeftSwipe={true}
         showsVerticalScrollIndicator={false}
         style={{
