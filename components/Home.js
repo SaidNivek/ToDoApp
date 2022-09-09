@@ -5,6 +5,7 @@ import { Text } from 'react-native'
 // components
 import Header from './Header'
 import ListItems from './ListItems'
+import InputModal from './InputModal'
 
 function Home() {
 
@@ -36,6 +37,9 @@ const handleClearTodos = () => {
     setTodos([])
 }
 
+// Modal visibility, which will change state if the modal has been clicked/pressed
+const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <>
         <Header 
@@ -44,6 +48,10 @@ const handleClearTodos = () => {
         <ListItems 
             todos={todos}
             setTodos={setTodos}
+        />
+        <InputModal 
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
         />
     </>
   )
